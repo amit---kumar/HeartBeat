@@ -10,18 +10,6 @@ hystrix:
           thread:
             timeoutInMilliseconds: 10000
 
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-#  client:
-#    serviceUrl:
-#      defaultZone: http://registry:8761/eureka/
-
-#security:
-#  oauth2:
-#    resource:
-#      user-info-uri: http://auth-service:5000/uaa/users/current
-
 spring:
   rabbitmq:
     host: rabbitmq
@@ -40,33 +28,15 @@ zuul:
   routes:
     auth-service:
       path: /oauth/**
-      url: http://localhost:9191
+      url: http://localhost:9181
       stripPrefix: false
       sensitiveHeaders:
 
     onboarding-service:
       path: /onboarding/**
-      serviceId: http://localhost:8192
+      serviceId: http://localhost:9182
       stripPrefix: false
       sensitiveHeaders:
 
-#    account-service:
-#      path: /accounts/**
-#      serviceId: account-service
-#      stripPrefix: false
-#      sensitiveHeaders:
-#
-#    statistics-service:
-#      path: /statistics/**
-#      serviceId: statistics-service
-#      stripPrefix: false
-#      sensitiveHeaders:
-#
-#    notification-service:
-#      path: /notifications/**
-#      serviceId: notification-service
-#      stripPrefix: false
-#      sensitiveHeaders:
-
 server:
-  port: 4000
+  port: 9180

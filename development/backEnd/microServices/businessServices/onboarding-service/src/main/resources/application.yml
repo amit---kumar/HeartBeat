@@ -1,23 +1,11 @@
-
-#security:
-#  oauth2:
-#    client:
-#      clientId: mobile
-#      clientSecret: pin
-#      accessTokenUri: http://localhost:8195/oauth/oauth/oauth/token
-#      grant-type: client_credentials
-#      scope: server
-#    resource:
-#      #user-info-uri: http://localhost:8195/user/current
-#      token-info-uri: http://localhost:8195/oauth/oauth/oauth/check_token
 server:
   servlet:
     context-path: /onboarding
-  port: 8192
+  port: 9182
 security:
   oauth2:
     resource:
-      token-info-uri: http://localhost:9191/oauth/check_token
+      token-info-uri: http://localhost:9181/oauth/check_token
     client:
       client-id: mobile
       client-secret: pin

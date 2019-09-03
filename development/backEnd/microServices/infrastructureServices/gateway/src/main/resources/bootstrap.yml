@@ -3,9 +3,3 @@ spring:
     name: gateway
   main:
     allow-bean-definition-overriding: true
-#  cloud:
-#    config:
-#      uri: http://config:8888
-#      fail-fast: true
-#      password: ${CONFIG_SERVICE_PASSWORD}
-#      username: user
