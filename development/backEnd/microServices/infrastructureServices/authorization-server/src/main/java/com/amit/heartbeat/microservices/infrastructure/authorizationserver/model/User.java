@@ -1,6 +1,7 @@
 package com.amit.heartbeat.microservices.infrastructure.authorizationserver.model;
 
 import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
