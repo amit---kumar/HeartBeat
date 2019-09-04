@@ -9,3 +9,12 @@ security:
     client:
       client-id: mobile
       client-secret: pin
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8888/eureka/
+  instance:
+    hostname: localhost
