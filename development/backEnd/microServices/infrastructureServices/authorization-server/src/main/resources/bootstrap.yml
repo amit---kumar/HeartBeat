@@ -1,11 +1,11 @@
 spring:
   application:
-    name: gateway
-  main:
-    allow-bean-definition-overriding: true
+    name: auth
   cloud:
     config:
       uri: http://localhost:8889
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD}
       username: user
+  main:
+    allow-bean-definition-overriding: true
