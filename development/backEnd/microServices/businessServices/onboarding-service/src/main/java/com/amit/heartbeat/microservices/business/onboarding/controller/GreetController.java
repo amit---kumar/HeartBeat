@@ -3,6 +3,7 @@ package com.amit.heartbeat.microservices.business.onboarding.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -27,6 +28,9 @@ public class GreetController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
+    @Autowired
+    private LoadBalancerClient loadBalancer;
+
     @RequestMapping(value = "/formal", method = RequestMethod.GET)
     public String formal()
     {
@@ -36,10 +40,8 @@ public class GreetController {
     @RequestMapping(value = "/formal/search", method = RequestMethod.GET)
     public String formalLoadBalanced(@RequestHeader("Authorization") String authorization)
     {
-        List<ServiceInstance> instances = discoveryClient.getInstances("SEARCH");
-        ServiceInstance serviceInstance = instances.get(0);
-
-        String baseUrl = serviceInstance.getUri().toString();
+        ServiceInstance serviceInstance=loadBalancer.choose("SEARCH");
+        String baseUrl=serviceInstance.getUri().toString();
         org.springframework.http.HttpHeaders httpHeaders = new org.springframework.http.HttpHeaders();
         String url =  baseUrl + "/search/profile/default";
         String headerName = "Authorization";
