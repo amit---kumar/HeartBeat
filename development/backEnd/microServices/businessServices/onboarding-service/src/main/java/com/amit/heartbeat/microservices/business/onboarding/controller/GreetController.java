@@ -34,12 +34,14 @@ public class GreetController {
     @RequestMapping(value = "/formal", method = RequestMethod.GET)
     public String formal()
     {
+        System.out.println("======Time Taken=========== : " + System.currentTimeMillis());
         return "Hi " + env.getProperty("local.server.port");
     }
 
     @RequestMapping(value = "/formal/search", method = RequestMethod.GET)
     public String formalLoadBalanced(@RequestHeader("Authorization") String authorization)
     {
+        long start = System.currentTimeMillis();
         ServiceInstance serviceInstance=loadBalancer.choose("SEARCH");
         String baseUrl=serviceInstance.getUri().toString();
         org.springframework.http.HttpHeaders httpHeaders = new org.springframework.http.HttpHeaders();
@@ -48,6 +50,8 @@ public class GreetController {
         httpHeaders.add(headerName, authorization);
         httpHeaders.add("Content-Type", "application/json");
         HttpEntity<String> requestEntity = new HttpEntity<>("Headers", httpHeaders);
+        long end = System.currentTimeMillis();
+        System.out.println("======Time Taken=========== : " + String.valueOf(end-start));
         return "Hi " + restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class).getBody();
     }
 }
