@@ -1,12 +1,15 @@
 spring:
   application:
-    name: onboarding-service
+    name: gateway-service
   main:
     allow-bean-definition-overriding: true
   cloud:
     config:
-      #uri: http://config-service:8888
       uri: http://localhost:8888
+      #uri: http://config-service:8888
       fail-fast: true
       password: ${CONFIG_SERVICE_PASSWORD}
       username: user
+zuul:
+  semaphore:
+    max-semaphores: 10000

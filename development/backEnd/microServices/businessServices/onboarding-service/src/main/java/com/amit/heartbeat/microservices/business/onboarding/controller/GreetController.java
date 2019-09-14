@@ -42,7 +42,7 @@ public class GreetController {
     public String formalLoadBalanced(@RequestHeader("Authorization") String authorization)
     {
         long start = System.currentTimeMillis();
-        ServiceInstance serviceInstance=loadBalancer.choose("SEARCH");
+        ServiceInstance serviceInstance=loadBalancer.choose("SEARCH-SERVICE");
         String baseUrl=serviceInstance.getUri().toString();
         org.springframework.http.HttpHeaders httpHeaders = new org.springframework.http.HttpHeaders();
         String url =  baseUrl + "/search/profile/default";

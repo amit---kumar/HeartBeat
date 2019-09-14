@@ -1,5 +1,5 @@
 server:
-  port: 8889
+  port: 8888
 spring:
   cloud:
     config:
@@ -10,15 +10,16 @@ spring:
             - service/onboarding-service*
             - service/search-service*
             - service/eureka-service*
-            - service/auth-service*
+            - service/oauth-service*
             - service/gateway-service*
   application:
-    name: config-server
+    name: config-service
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://localhost:8888/eureka/
+      defaultZone: http://localhost:8889/eureka/
+      #defaultZone: http://eureka-service:8889/eureka/
   instance:
     hostname: localhost
